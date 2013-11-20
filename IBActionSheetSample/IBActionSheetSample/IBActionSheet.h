@@ -99,10 +99,10 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 - (void)setButtonHighlightTextColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
 - (void)setButtonHighlightBackgroundColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
 
-@property UIView *transparentView;
-@property NSMutableArray *buttons;
-@property (nonatomic) NSString *title;
-@property IBActionSheetTitleView *titleView;
+@property (strong,nonatomic) UIView *transparentView;
+@property (strong,nonatomic) NSMutableArray *buttons;
+@property (strong, nonatomic) NSString *title;
+@property (strong,nonatomic) IBActionSheetTitleView *titleView;
 @property (weak) id <IBActionSheetDelegate> delegate;
 @property IBActionSheetButtonResponse buttonResponse;
 @property BOOL visible, hasCancelButton, hasDestructiveButton, shouldCancelOnTouch;
@@ -123,8 +123,8 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 
 @property NSInteger index;
 @property IBActionSheetButtonCornerType cornerType;
-@property UIColor *originalTextColor, *highlightTextColor;
-@property UIColor *originalBackgroundColor, *highlightBackgroundColor;
+@property (strong,nonatomic) UIColor *originalTextColor, *highlightTextColor;
+@property (strong,nonatomic) UIColor *originalBackgroundColor, *highlightBackgroundColor;
 
 
 @end
@@ -140,7 +140,7 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 
 
 
-@property UILabel *titleLabel;
+@property (strong,nonatomic) UILabel *titleLabel;
 
 @end
 

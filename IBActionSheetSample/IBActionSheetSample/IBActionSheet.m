@@ -463,9 +463,10 @@
 
 - (void)buttonClicked:(IBActionSheetButton *)button {
     
-    [self.delegate actionSheet:self clickedButtonAtIndex:button.index];
     self.shouldCancelOnTouch = YES;
-    [self removeFromView];
+    [self removeFromView:^{
+        [self.delegate actionSheet:self clickedButtonAtIndex:button.index];
+    }];
 }
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
@@ -521,7 +522,10 @@
 }
 
 - (void)removeFromView {
-    
+    [self removeFromView:nil];
+}
+
+-(void)removeFromView:(void (^)())completion {
     if (self.shouldCancelOnTouch) {
         
         [UIView animateWithDuration:0.3f
@@ -534,6 +538,9 @@
                              [self.transparentView removeFromSuperview];
                              [self removeFromSuperview];
                              self.visible = NO;
+                             if (completion) {
+                                 completion();
+                             }
                          }];
     }
 }
